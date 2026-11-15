@@ -516,7 +516,7 @@ skip_done:
 				 * To simplify the following parsing, when the last character of the input
 				 * file is not new line code, we add this.
 				 */
-				if (self->rec_buf[i] == '\0')
+				if (i >= self->used_len)
 				{
 					ret++;
 					self->rec_buf[i] = '\n';
@@ -532,7 +532,7 @@ skip_done:
 		}
 
 		c = self->rec_buf[i];
-		if (c == '\0')
+		if (c == '\0' && i >= self->used_len)
 		{
 			/*
 			 * If parsing has been done upto the last of the buffer, we read next data.
